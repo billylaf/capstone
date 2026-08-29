@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface RichiestaPreventivoRepository extends JpaRepository<RichiestaPreventivo, Long> {
     List<RichiestaPreventivo> findByStato(String stato);
+
+    List<RichiestaPreventivo> findByProdottoId(Long id);
 }

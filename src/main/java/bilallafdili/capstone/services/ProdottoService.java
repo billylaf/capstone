@@ -1,10 +1,12 @@
 package bilallafdili.capstone.services;
 
 import bilallafdili.capstone.entities.Prodotto;
+import bilallafdili.capstone.entities.RichiestaPreventivo;
 import bilallafdili.capstone.exceptions.NotFoundException;
 import bilallafdili.capstone.recordsDTO.ProdottoRequestDTO;
 import bilallafdili.capstone.recordsDTO.ProdottoResponseDTO;
 import bilallafdili.capstone.repositories.ProdottoRepository;
+import bilallafdili.capstone.repositories.RichiestaPreventivoRepository;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import jakarta.transaction.Transactional;
@@ -21,13 +23,18 @@ import java.util.Map;
 public class ProdottoService {
 
     private final ProdottoRepository prodottoRepository;
+    private final RichiestaPreventivoRepository richiestaRepository; // AGGIUNTO
     private final Cloudinary cloudinary;
 
     @Value("${cloudinary.upload-folder:sollevamenti/prodotti}")
     private String uploadFolder;
 
-    public ProdottoService(ProdottoRepository prodottoRepository, Cloudinary cloudinary) {
+
+    public ProdottoService(ProdottoRepository prodottoRepository,
+                           RichiestaPreventivoRepository richiestaRepository,
+                           Cloudinary cloudinary) {
         this.prodottoRepository = prodottoRepository;
+        this.richiestaRepository = richiestaRepository;
         this.cloudinary = cloudinary;
     }
 
@@ -99,6 +106,15 @@ public class ProdottoService {
     public void deleteProdotto(Long id) {
         Prodotto prodotto = prodottoRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Prodotto con id " + id + " non trovato"));
+
+        // 🔥 LOGICA AGGIUNTA: Scollega il prodotto dalle richieste di preventivo
+        List<RichiestaPreventivo> richiesteCollegate = richiestaRepository.findByProdottoId(id);
+        for (RichiestaPreventivo r : richiesteCollegate) {
+            r.setProdotto(null); // Imposta il prodotto a null
+            richiestaRepository.save(r); // Salva la modifica nel database
+        }
+
+        // Ora puoi eliminare il prodotto in sicurezza
         prodottoRepository.delete(prodotto);
     }
 

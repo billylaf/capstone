@@ -5,7 +5,6 @@ import bilallafdili.capstone.recordsDTO.ProdottoResponseDTO;
 import bilallafdili.capstone.services.ProdottoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,7 +40,6 @@ public class ProdottoController {
 
     // 🔒 ADMIN ONLY
     @PostMapping(consumes = "multipart/form-data")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public ProdottoResponseDTO createProdotto(
             @RequestPart("prodotto") @Valid ProdottoRequestDTO request,
@@ -52,7 +50,7 @@ public class ProdottoController {
 
     // 🔒 ADMIN ONLY
     @PutMapping(value = "/{id}", consumes = "multipart/form-data")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+
     public ProdottoResponseDTO updateProdotto(
             @PathVariable Long id,
             @RequestPart("prodotto") @Valid ProdottoRequestDTO request,
@@ -62,7 +60,7 @@ public class ProdottoController {
 
     // 🔒 ADMIN ONLY
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProdotto(@PathVariable Long id) {
         prodottoService.deleteProdotto(id);
