@@ -50,7 +50,7 @@ const AdminQuotes = () => {
 
   return (
     <div>
-      <h3 className="mb-4">📋 Richieste di Preventivo</h3>
+      <h3 className="mb-4 text-black"> Richieste di Preventivo</h3>
 
       <div className="table-responsive">
         <table className="table table-hover">
@@ -92,20 +92,20 @@ const AdminQuotes = () => {
                   <td>
                     <div className="d-flex gap-1 flex-wrap">
                       <button
+                        className="text-primary"
                         onClick={() => updateStatus(q.id, "IN_PROGRESS")}
-                        className="btn btn-sm btn-info"
                       >
                         In Lavorazione
                       </button>
                       <button
+                        className="text-success"
                         onClick={() => updateStatus(q.id, "COMPLETED")}
-                        className="btn btn-sm btn-success"
                       >
                         Completato
                       </button>
                       <button
+                        className="text-danger"
                         onClick={() => updateStatus(q.id, "REJECTED")}
-                        className="btn btn-sm btn-danger"
                       >
                         Rifiutato
                       </button>

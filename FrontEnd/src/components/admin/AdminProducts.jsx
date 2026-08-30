@@ -35,18 +35,15 @@ const AdminProducts = () => {
   if (loading)
     return (
       <div className="text-center py-5">
-        <div className="spinner-border text-primary" />
+        <div className="spinner-border text-black" />
       </div>
     )
 
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3>📦 Gestione Prodotti</h3>
-        <button
-          onClick={() => navigate("/admin/prodotti/nuovo")}
-          className="btn btn-success"
-        >
+        <h3>Gestione Prodotti</h3>
+        <button onClick={() => navigate("/admin/prodotti/nuovo")}>
           + Nuovo Prodotto
         </button>
       </div>
@@ -88,7 +85,12 @@ const AdminProducts = () => {
                 <td>€ {p.prezzo.toFixed(2)}</td>
                 <td>
                   <span
-                    className={`badge ${p.disponibile ? "bg-success" : "bg-danger"}`}
+                    className={`badge`}
+                    style={
+                      p.disponibile
+                        ? { color: "#05e83a" }
+                        : { color: "#dc3545" }
+                    }
                   >
                     {p.disponibile ? "Sì" : "No"}
                   </span>
@@ -96,9 +98,9 @@ const AdminProducts = () => {
                 <td>
                   <Link
                     to={`/admin/prodotti/modifica/${p.id}`}
-                    className="btn btn-sm btn-primary me-2"
+                    className=" me-2"
                   >
-                    Modifica
+                    <button>Modifica</button>
                   </Link>
                   <button class="button" onClick={() => handleDelete(p.id)}>
                     <svg viewBox="0 0 448 512" class="svgIcon">

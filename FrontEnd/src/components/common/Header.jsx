@@ -14,7 +14,7 @@ const Header = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
+    <nav className="navbar navbar-expand-lg fixed-top bg-white shadow-sm text-info">
       <div className="container">
         <Link
           to="/"
@@ -83,10 +83,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <button
-                    onClick={handleLogout}
-                    className="btn btn-outline-danger ms-lg-2"
-                  >
+                  <button onClick={handleLogout} className=" ms-lg-2">
                     Logout
                   </button>
                 </li>

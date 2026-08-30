@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import api from "../../api/axios"
 
@@ -99,8 +99,8 @@ const AdminProductForm = () => {
 
   return (
     <div>
-      <h3 className="mb-4">
-        {isEditing ? "✏️ Modifica Prodotto" : "➕ Nuovo Prodotto"}
+      <h3 className="mb-4 text-black">
+        {isEditing ? " Modifica Prodotto" : " Nuovo Prodotto"}
       </h3>
 
       {error && <div className="alert alert-danger">{error}</div>}
@@ -141,7 +141,6 @@ const AdminProductForm = () => {
             <option value="">Seleziona categoria</option>
             <option value="Carroponti">Carroponti</option>
             <option value="Gru a bandiera">Gru a bandiera</option>
-            <option value="Ascensori">Ascensori</option>
             <option value="Accessori">Accessori</option>
           </select>
         </div>
@@ -203,18 +202,14 @@ const AdminProductForm = () => {
         <div className="d-flex gap-3">
           <button
             type="submit"
-            className="btn btn-primary btn-lg fw-semibold"
+            className=" btn-lg fw-semibold"
             disabled={loading}
           >
-            {loading
-              ? "Salvataggio..."
-              : isEditing
-                ? "Aggiorna Prodotto"
-                : "Crea Prodotto"}
+            {loading ? "Salvataggio..." : isEditing ? "Aggiorna" : "Crea "}
           </button>
           <button
             type="button"
-            className="btn btn-secondary btn-lg"
+            className=" btn-lg"
             onClick={() => navigate("/admin")}
           >
             Annulla

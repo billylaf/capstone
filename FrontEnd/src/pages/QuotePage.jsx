@@ -55,7 +55,7 @@ const QuotePage = () => {
     <div className="container py-5" style={{ maxWidth: "800px" }}>
       <h1
         className="display-4 text-center fw-bold"
-        style={{ color: "#1a3a5c" }}
+        style={{ color: "#000000" }}
       >
         Richiedi Preventivo
       </h1>
@@ -64,8 +64,8 @@ const QuotePage = () => {
       </p>
 
       {success ? (
-        <div className="alert alert-success text-center py-4">
-          <h4>✅ Richiesta inviata con successo!</h4>
+        <div className="alert text-center py-4">
+          <h4> Richiesta inviata con successo!</h4>
           <p>Ti contatteremo al più presto.</p>
           <small className="text-secondary">Reindirizzamento in corso...</small>
         </div>
@@ -137,11 +137,7 @@ const QuotePage = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-warning btn-lg fw-semibold"
-            disabled={loading}
-          >
+          <button class="requestButton" type="submit" disabled={loading}>
             {loading ? "Invio in corso..." : "Invia Richiesta"}
           </button>
         </form>

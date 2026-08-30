@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import api from "../api/axios"
 
@@ -8,13 +8,7 @@ const ProductsPage = () => {
   const [error, setError] = useState(null)
   const [category, setCategory] = useState("Tutti")
 
-  const categories = [
-    "Tutti",
-    "Carroponti",
-    "Gru a bandiera",
-    "Ascensori",
-    "Accessori",
-  ]
+  const categories = ["Tutti", "Carroponti", "Gru a bandiera", "Accessori"]
 
   useEffect(() => {
     fetchProducts()
@@ -26,7 +20,9 @@ const ProductsPage = () => {
       setProducts(res.data)
       setLoading(false)
     } catch {
-      setError("Errore nel caricamento dei prodotti")
+      setError(
+        "Prodotti non dispobili per il momento, ci scusiamo per il disagio",
+      )
       setLoading(false)
     }
   }
@@ -39,7 +35,7 @@ const ProductsPage = () => {
   if (loading)
     return (
       <div className="text-center py-5">
-        <div className="spinner-border text-primary" />
+        <div className="spinner-border text-black" />
       </div>
     )
   if (error)
@@ -49,7 +45,7 @@ const ProductsPage = () => {
     <div className="container py-5">
       <h1
         className="display-4 text-center fw-bold"
-        style={{ color: "#1a3a5c" }}
+        style={{ color: "#000000" }}
       >
         I Nostri Prodotti
       </h1>
@@ -59,11 +55,7 @@ const ProductsPage = () => {
 
       <div className="d-flex flex-wrap gap-2 justify-content-center mb-4">
         {categories.map((c) => (
-          <button
-            key={c}
-            className={`btn ${category === c ? "btn-primary" : "btn-outline-primary"}`}
-            onClick={() => setCategory(c)}
-          >
+          <button key={c} onClick={() => setCategory(c)}>
             {c}
           </button>
         ))}
@@ -72,8 +64,11 @@ const ProductsPage = () => {
       <div className="row g-4">
         {filtered.length > 0 ? (
           filtered.map((p) => (
-            <div key={p.id} className="col-md-4">
-              <div className="card h-100 shadow-sm hover-shadow transition">
+            <div key={p.id} className="col-md-4 ">
+              <div
+                className="card h-100 shadow-sm hover-shadow transition"
+                class="card"
+              >
                 <div
                   className="card-img-top bg-light d-flex align-items-center justify-content-center"
                   style={{ height: "200px" }}
@@ -98,11 +93,11 @@ const ProductsPage = () => {
                     {p.descrizione?.length > 100 && "..."}
                   </p>
                   <div className="d-flex justify-content-between align-items-center mt-3">
-                    <span className="h5 text-warning fw-bold">
+                    <span className="h5 text-black fw-bold">
                       € {p.prezzo.toFixed(2)}
                     </span>
-                    <Link to={`/prodotti/${p.id}`} className="btn btn-primary">
-                      Dettagli
+                    <Link to={`/prodotti/${p.id}`}>
+                      <button>Dettagli</button>
                     </Link>
                   </div>
                 </div>
@@ -117,12 +112,6 @@ const ProductsPage = () => {
           </div>
         )}
       </div>
-
-      <style>{`
-        .hover-shadow:hover { transform: translateY(-5px); box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15)!important; }
-        .transition { transition: all 0.3s ease; }
-        .object-fit-contain { object-fit: contain; }
-      `}</style>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import { useAuth } from "../context/AuthContext"
@@ -49,8 +49,8 @@ const ProductDetailPage = () => {
 
   return (
     <div className="container py-5">
-      <Link to="/prodotti" className="btn btn-outline-secondary mb-4">
-        ← Torna ai Prodotti
+      <Link to="/prodotti" className="mb-4">
+        <button>← Torna ai Prodotti</button>
       </Link>
 
       <div className="row g-4">
@@ -86,7 +86,7 @@ const ProductDetailPage = () => {
         </div>
 
         <div className="col-md-6">
-          <h1 className="display-5 fw-bold" style={{ color: "#1a3a5c" }}>
+          <h1 className="display-5 fw-bold" style={{ color: "#000000" }}>
             {product.nome}
           </h1>
           <span className="badge bg-secondary mb-3">{product.categoria}</span>
@@ -100,36 +100,27 @@ const ProductDetailPage = () => {
           </div>
 
           <div className="d-flex align-items-center gap-3 mb-4">
-            <span className="h2 text-warning fw-bold">
+            <span className="h4 text-black fw-bold">
               € {product.prezzo.toFixed(2)}
             </span>
-            <span
-              className={`badge ${product.disponibile ? "bg-success" : "bg-danger"} fs-6`}
-            >
+            <span>
               {product.disponibile ? "Disponibile" : "Non Disponibile"}
             </span>
           </div>
 
           <div className="d-flex gap-3 flex-wrap">
-            <Link
-              to="/preventivo"
-              state={{ prodotto: product }}
-              className="btn btn-warning btn-lg fw-semibold"
-            >
-              Richiedi Preventivo
+            <Link to="/preventivo" state={{ prodotto: product }}>
+              <button> Richiedi Preventivo</button>
             </Link>
             {isAuthenticated && (
               <>
                 <Link
                   to={`/admin/prodotti/modifica/${product.id}`}
-                  className="btn btn-primary btn-lg"
+                  className=" btn-lg"
                 >
-                  Modifica
+                  <button className="text-primary">Modifica</button>
                 </Link>
-                <button
-                  onClick={handleDelete}
-                  className="btn btn-danger btn-lg"
-                >
+                <button onClick={handleDelete} className=" btn-lg text-danger">
                   Elimina
                 </button>
               </>

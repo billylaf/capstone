@@ -26,8 +26,8 @@ const LoginPage = () => {
   return (
     <div className="container py-5" style={{ maxWidth: "450px" }}>
       <div className="card shadow-sm p-4">
-        <h2 className="text-center fw-bold" style={{ color: "#1a3a5c" }}>
-          🔐 Accesso Admin
+        <h2 className="text-center fw-bold" style={{ color: "#000000" }}>
+          Accesso Admin
         </h2>
         <p className="text-center text-secondary mb-4">
           Inserisci le tue credenziali per accedere all'area riservata
@@ -57,18 +57,19 @@ const LoginPage = () => {
               required
             />
           </div>
-
-          <button
-            type="submit"
-            className="btn btn-primary w-100 btn-lg fw-semibold"
-            disabled={loading}
-          >
-            {loading ? "Accesso in corso..." : "Accedi"}
-          </button>
+          <div className="d-flex justify-content-center">
+            <button
+              type="submit"
+              className=" text-center fw-semibold"
+              disabled={loading}
+            >
+              {loading ? "Accesso in corso..." : "Accedi"}
+            </button>
+          </div>
         </form>
 
         <p className="text-center text-muted mt-3 small">
-          Solo utenti autorizzati. Per registrarsi contattare l'amministratore.
+          Accesso concesso solo ad utenti autorizzati.
         </p>
       </div>
     </div>
