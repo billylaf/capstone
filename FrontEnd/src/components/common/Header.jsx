@@ -14,7 +14,7 @@ const Header = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top bg-white shadow-sm text-info">
+    <nav className="navbar navbar-expand-lg fixed-top bg-white shadow-sm te">
       <div className="container">
         <Link
           to="/"
@@ -79,7 +79,7 @@ const Header = () => {
                     className="nav-link fw-semibold"
                     onClick={() => setIsOpen(false)}
                   >
-                    Admin
+                    Amministrazione
                   </Link>
                 </li>
                 <li className="nav-item">

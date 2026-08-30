@@ -71,7 +71,7 @@ const ProductsPage = () => {
               >
                 <div
                   className="card-img-top bg-light d-flex align-items-center justify-content-center"
-                  style={{ height: "200px" }}
+                  style={{ height: "300px" }}
                 >
                   {p.immagine ? (
                     <img
@@ -93,9 +93,6 @@ const ProductsPage = () => {
                     {p.descrizione?.length > 100 && "..."}
                   </p>
                   <div className="d-flex justify-content-between align-items-center mt-3">
-                    <span className="h5 text-black fw-bold">
-                      € {p.prezzo.toFixed(2)}
-                    </span>
                     <Link to={`/prodotti/${p.id}`}>
                       <button>Dettagli</button>
                     </Link>

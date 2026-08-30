@@ -203,7 +203,7 @@ const HomePage = () => {
       </section>
 
       {/* Strengths */}
-      <section className="py-5">
+      {/*<section className="py-5">
         <div className="container">
           <h2
             className="display-4 text-center fw-bold"
@@ -227,7 +227,7 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }

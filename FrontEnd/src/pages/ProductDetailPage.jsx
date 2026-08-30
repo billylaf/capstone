@@ -100,9 +100,6 @@ const ProductDetailPage = () => {
           </div>
 
           <div className="d-flex align-items-center gap-3 mb-4">
-            <span className="h4 text-black fw-bold">
-              € {product.prezzo.toFixed(2)}
-            </span>
             <span>
               {product.disponibile ? "Disponibile" : "Non Disponibile"}
             </span>

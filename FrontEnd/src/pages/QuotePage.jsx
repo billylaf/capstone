@@ -72,7 +72,7 @@ const QuotePage = () => {
       ) : (
         <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
           <div className="mb-3">
-            <label className="form-label fw-semibold">Nome e Cognome *</label>
+            <label className="form-label fw-semibold">Azienda *</label>
             <input
               type="text"
               name="nomeCliente"
